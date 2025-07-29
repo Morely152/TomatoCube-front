@@ -1,4 +1,4 @@
-// pages/zhuanzhu/zhuanzhu.ts
+// pages/personal/personal.ts
 Page({
 
   /**

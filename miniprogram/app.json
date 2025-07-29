@@ -2,7 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/zhuanzhu/zhuanzhu"
+    "pages/focus/focus",
+    "pages/task/task",
+    "pages/staticstics/statistics",
+    "pages/personal/personal"
   ],
   "window": {
     "navigationBarTextStyle": "black",

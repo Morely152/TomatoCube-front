@@ -1,2 +1,4 @@
 <!--pages/task/task.wxml-->
-<text>pages/task/task.wxml</text>
+<view class="light-main">
+
+</view>

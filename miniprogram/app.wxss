@@ -1,4 +1,4 @@
-/**app.wxss**/
+/**app.wxss: 全局样式表 **/
 .container {
   height: 100%;
   display: flex;
@@ -8,3 +8,14 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+/* 浅色-页面总体布局 */
+.light-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+    width: 100vw;
+    background-color: #ecf0f3;
+}

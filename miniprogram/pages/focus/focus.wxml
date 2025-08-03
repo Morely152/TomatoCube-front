@@ -1,2 +1,6 @@
 <!--pages/focus/focus.wxml-->
-<text>pages/focus/focus.wxml</text>
+<view class="light-main">
+
+</view>
+
+<!-- 此注释用于演示git提交，可删除 -->

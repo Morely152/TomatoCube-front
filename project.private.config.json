@@ -19,5 +19,18 @@
     "checkInvalidKey": true,
     "ignoreDevUnusedFiles": true
   },
-  "libVersion": "3.8.12"
+  "libVersion": "3.8.12",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/statistics/statistics",
+          "pathName": "pages/statistics/statistics",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
+        }
+      ]
+    }
+  }
 }

@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+      today_amounts:0,
+      today_duration_hour:0,
+      today_duration_minute:0,
+      today_surpass:0,
+      week_amounts:0,
+      week_duration_hour:0,
+      week_duration_minute:0,
+      week_surpass:0,
+      all_amounts:0,
+      all_duration_hour:0,
+      all_duration_minute:0,
+      all_surpass:0,
   },
 
   /**

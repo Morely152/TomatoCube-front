@@ -1,11 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
     "pages/focus/focus",
     "pages/task/task",
-    "pages/staticstics/statistics",
-    "pages/personal/personal"
+    "pages/statistics/statistics",
+    "pages/personal/personal",
+    "pages/logs/logs"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -14,5 +13,36 @@
   },
   "style": "v2",
   "componentFramework": "glass-easel",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#ff6347",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/focus/focus",
+        "text": "专注",
+        "iconPath": "resources/light-icons/nav_0.png",
+        "selectedIconPath": "resources/light-icons/nav_0_checked.png"
+      },
+      {
+        "pagePath": "pages/task/task",
+        "text": "任务",
+        "iconPath": "resources/light-icons/nav_1.png",
+        "selectedIconPath": "resources/light-icons/nav_1_checked.png"
+      },
+      {
+        "pagePath": "pages/statistics/statistics",
+        "text": "统计",
+        "iconPath": "resources/light-icons/nav_2.png",
+        "selectedIconPath": "resources/light-icons/nav_2_checked.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "我的",
+        "iconPath": "resources/light-icons/nav_3.png",
+        "selectedIconPath": "resources/light-icons/nav_3_checked.png"
+      }
+    ]
+  }
 }

@@ -3,8 +3,9 @@ page{
   background-color: #F5F5F5;
 }
 .block{
+  display: flex;
   margin-left: 14px;
-  margin-top: 10px;
+  margin-top: 8px;
   width: 10px;
   height: 21px;
   background:  #FF6347;
@@ -12,8 +13,9 @@ page{
   position: relative;
 }
 .little-title{
+  display: flex;
  margin-left: 5px;
-margin-top: 15.67px;
+margin-top: 13.67px;
   height: 22px;
 opacity: 1;
 font-size: 15px;
@@ -28,10 +30,11 @@ position: relative;
 /* 专注报表 */
 .container-1{
 justify-content: center;
-margin-top: 18px;
+margin-top: 15px;
 margin-left: 3.5%;
+margin-bottom: 0.2%;
 width: 93%;
-height: 109px;
+height: 90px;
 opacity: 1;
 border-radius: 8px;
 background: #FFFFFF;
@@ -42,18 +45,18 @@ background: #FFFFFF;
 }
 .title-top-1{
   margin-left: 2.5%;
-  margin-top: 8px;
-  width: 81.87px;
-  height: 22px;
+  margin-top: 6px;
+  width: 23.5%;
+  height: 17.5px;
 opacity: 1;
 background: #fcbdb2;
 float: left;
 }
 .title-top-2{
   margin-left: 0.5%;
-  margin-top: 8px;
-  width: 81.87px;
-  height: 22px;
+  margin-top: 6px;
+  width: 23.5%;
+  height: 17.5px;
 opacity: 1;
 background: #fcbdb2;
 float: left;
@@ -69,8 +72,8 @@ justify-content: center;
  .title-left{
   margin-left: 2.5%;
   margin-top: 1.67px;
-  width: 81.87px;
-  height: 22px;
+  width: 23.5%;
+  height: 17.5px;
   opacity: 1;
   background: #fcbdb2;
   font-size: 10px;
@@ -85,8 +88,8 @@ justify-content: center;
  .td{
   margin-left: 0.5%;
   margin-top: 1.67px;
-  width: 81.87px;
-  height: 22px;
+  width: 23.5%;
+  height: 17.5px;
   opacity: 1;
   background: #ECF0F3;
   font-size: 10px;
@@ -98,3 +101,25 @@ display: flex;
 align-items: center;
 justify-content: center;
  }
+.container-2{
+  justify-content: center;
+margin-top: 15px;
+margin-left: 3.5%;
+margin-bottom: 0.2%;
+width: 93%;
+height: 170px;
+opacity: 1;
+border-radius: 8px;
+background: #FFFFFF;
+}
+.container-3{
+  justify-content: center;
+margin-top: 15px;
+margin-left: 3.5%;
+margin-bottom: 0.2%;
+width: 93%;
+height: 185px;
+opacity: 1;
+border-radius: 8px;
+background: #FFFFFF;
+}

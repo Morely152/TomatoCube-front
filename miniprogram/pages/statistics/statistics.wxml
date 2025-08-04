@@ -1,4 +1,5 @@
 <!--pages/staticstics/statistics.wxml-->
+<!-- <view class="light-main"> -->
 <!-- ----------专注报表---------- -->
 <view class="block"></view>
 <view class="little-title">专注报表</view>
@@ -37,4 +38,11 @@
 <view style="height: 20px;"></view> <!-- 插入这个空行 -->
 <view class="container-2">
 </view>
+<!-- ----------专注折线图------------ -->
+<view class="block"></view>
+<view class="little-title">专注折线图</view>
+<view style="height: 20px;"></view> <!-- 插入这个空行 -->
+<view class="container-3">
+</view>
+<!-- </view> -->
 

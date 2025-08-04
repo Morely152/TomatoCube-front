@@ -1,1 +1,5 @@
 /* pages/focus/focus.wxss */
+
+.border {
+    border: red 1px solid;
+}

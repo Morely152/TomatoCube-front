@@ -14,8 +14,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
     height: 100vh;
     width: 100vw;
     background-color: #ecf0f3;
+}
+
+/* 浅色-凹陷阴影 */
+.light-in {
+    box-shadow:inset 5px 5px 15px  #B0BFBF,inset -5px -5px 100px  #ffffff;
+}
+
+/* 浅色-凸出阴影 */
+.light-out {
+    box-shadow: -10px -10px 15px  #FFFFFF, 10px 10px 15px  #D1D9E6;
 }

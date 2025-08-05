@@ -3,3 +3,74 @@
 .border {
     border: red 1px solid;
 }
+
+/* 第一行按钮 */
+.btn-line-1 {
+    display: flex;
+}
+
+
+/* 宽按钮 */
+.wide-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 60px;
+    border-radius: 15px;
+}
+
+.wide-btn text {
+    font-size: 15px;
+    margin-left: 4px;
+}
+
+/* 第二行按钮 */
+.btn-line-2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* 长按钮 */
+.long-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 150%;
+    border-radius: 15px;
+}
+
+.long-btn text {
+    color: #4f4f4f;
+    width: 80px;
+    font-weight: normal;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* 滑块样式 */
+.slider-box {
+    display: flex;
+    align-items: center;
+}
+
+.slider {
+    width: 50px;
+    height: 50px;
+    background-color: #ff6347;
+    position: relative;
+    left: 5px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 滑块提示信息 */
+.slider-tips {
+    position: relative;
+    margin-left: 30px;
+    color: #CCCCCC;
+}

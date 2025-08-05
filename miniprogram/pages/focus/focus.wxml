@@ -1,12 +1,46 @@
 <!--pages/focus/focus.wxml-->
 <view class="light-main">
-    <view class="border" style="width: 250px; height: 250px; margin-top: 68px;">
-    
+    <!-- 计时器 -->
+    <view class="light-in center" style="width: 250px; height: 250px; border-radius: 50%; margin-top: 68px;">
+        <view class="light-out center" style="width: 184px; height: 184px; border-radius: 50%">
+            <text class="counter" style="font-size: 48px;">25:00</text>
+        </view>
     </view>
-    <view class="border" style="width: 300px; height: 60px; margin-top: 26px;">
-    
-    </view> 
-    <view class="border" style="width: 300px; height: 180px; margin-top: 40px;">
-        
+
+    <!-- 滑动控件 -->
+    <view class="light-in slider-box" style="width: 300px; height: 60px; border-radius: 15px; margin-top: 10%;">
+        <view class="slider">
+            <image src="../../resources/light-icons/slider.png" style="width: 25px; height: 25px;"></image>
+        </view>
+        <text class="slider-tips"> >>>向右滑动开始专注 </text>
+    </view>
+
+    <!-- 专注选择按钮 -->
+    <view class="btn-line-1" style="width: 80%; height: 60px; margin-top: 26px;">
+        <button class="wide-btn light-out" style="background-color: #ff6347; margin-right: 14px;">
+            <image src="../../resources/light-icons/user-icon.png" style="width: 24px; height: 24px; "></image>
+            <text style="color: #ffffff;">个人专注</text>
+        </button>
+
+        <button class="wide-btn light-out">
+            <image src="../../resources/light-icons/group-icon.png" style="width: 24px; height: 24px;"></image>
+            <text>组队专注</text>
+        </button>
+    </view>
+
+    <!-- 底排小按钮 -->
+    <view class="btn-line-2" style="width: 80%; margin-top: 10%;">
+        <button class="long-btn light-out">
+            <image src="../../resources/light-icons/bzy.png" style="width: 30px; height: 30px;"></image>
+            <text>白噪音</text>
+        </button>
+        <button class="long-btn light-out" style="margin: 0 30px;">
+            <image src="../../resources/light-icons/pmxz.png" style="width: 30px; height: 30px;"></image>
+            <text>横屏</text>
+        </button>
+        <button class="long-btn light-out">
+            <image src="../../resources/light-icons/phb.png" style="width: 30px; height: 30px;"></image>
+            <text>排行榜</text>
+        </button>
     </view>
 </view>

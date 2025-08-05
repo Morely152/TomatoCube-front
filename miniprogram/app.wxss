@@ -28,3 +28,10 @@
 .light-out {
     box-shadow: -10px -10px 15px  #FFFFFF, 10px 10px 15px  #D1D9E6;
 }
+
+/* 居中样式 */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

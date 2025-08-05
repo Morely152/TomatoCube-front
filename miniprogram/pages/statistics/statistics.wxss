@@ -62,4 +62,8 @@ page {
 /* 专注报表表头 */
 .focus-table .thead {
     background-color: rgba(255, 99, 71, 0.3);
+    font-weight: bolder;
+}
+.focus-table {
+    font-weight: normal;
 }

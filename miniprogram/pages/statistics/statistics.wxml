@@ -1,48 +1,58 @@
 <!--pages/staticstics/statistics.wxml-->
 <!-- <view class="light-main"> -->
-<!-- ----------专注报表---------- -->
-<view class="block"></view>
-<view class="little-title">专注报表</view>
-<view style="height: 20px;"></view> <!-- 插入这个空行 -->
-<view class="container-1">
-    <!-- 上表头 -->
-    <view class="row">
-      <view class="title-top-1"></view>
-      <view class="title-top-2">专注次数</view>
-      <view class="title-top-2">专注时长</view>
-      <view class="title-top-2">超越用户</view>
+<view class="light-main">
+    <!-- ----------专注报表---------- -->
+    <view class="title" style="width: 100%;">
+        <view class="block"></view>
+        <view class="little-title">专注报表</view>
     </view>
-    <!-- 主体 -->
-    <view class="row">
-      <view class="title-left">今日</view>
-      <view class="td">{{today_amounts}}次</view>
-      <view class="td">{{today_duration_hour}}小时{{today_duration_minute}}分钟</view>
-      <view class="td">{{today_surpass}}%</view>
+
+    <view class="chart" style="height: 100px;">
+        <!-- 上表头 -->
+        <view class="row">
+            <view class="title-top-1"></view>
+            <view class="title-top-2">专注次数</view>
+            <view class="title-top-2">专注时长</view>
+            <view class="title-top-2">超越用户</view>
+        </view>
+        <!-- 主体 -->
+        <view class="row">
+            <view class="title-left">今日</view>
+            <view class="td">{{today_amounts}}次</view>
+            <view class="td">{{today_duration_hour}}小时{{today_duration_minute}}分钟</view>
+            <view class="td">{{today_surpass}}%</view>
+        </view>
+        <view class="row">
+            <view class="title-left">本周</view>
+            <view class="td">{{week_amounts}}次</view>
+            <view class="td">{{week_duration_hour}}小时{{week_duration_minute}}分钟</view>
+            <view class="td">{{week_surpass}}%</view>
+        </view>
+        <view class="row">
+            <view class="title-left">总计</view>
+            <view class="td">{{all_amounts}}次</view>
+            <view class="td">{{all_duration_hour}}小时{{all_duration_minute}}分钟</view>
+            <view class="td">{{all_surpass}}%</view>
+        </view>
     </view>
-    <view class="row">
-      <view class="title-left">本周</view>
-      <view class="td">{{week_amounts}}次</view>
-      <view class="td">{{week_duration_hour}}小时{{week_duration_minute}}分钟</view>
-      <view class="td">{{week_surpass}}%</view>
+
+    <!------------ 专注热力图 ------------->
+    <view class="title" style="width: 100%;">
+        <view class="block"></view>
+        <view class="little-title">专注热力图</view>
     </view>
-    <view class="row">
-      <view class="title-left">总计</view>
-      <view class="td">{{all_amounts}}次</view>
-      <view class="td">{{all_duration_hour}}小时{{all_duration_minute}}分钟</view>
-      <view class="td">{{all_surpass}}%</view>
+
+    <view class="chart" style="height: 190px;">
+
     </view>
-</view>
-<!------------ 专注热力图 ------------->
-<view class="block"></view>
-<view class="little-title">专注热力图</view>
-<view style="height: 20px;"></view> <!-- 插入这个空行 -->
-<view class="container-2">
-</view>
-<!-- ----------专注折线图------------ -->
-<view class="block"></view>
-<view class="little-title">专注折线图</view>
-<view style="height: 20px;"></view> <!-- 插入这个空行 -->
-<view class="container-3">
+    <!-- ----------专注折线图------------ -->
+    <view class="title" style="width: 100%;">
+        <view class="block"></view>
+        <view class="little-title">专注折线</view>
+    </view>
+
+    <view class="chart" style="height: 235px;">
+
+    </view>
 </view>
 <!-- </view> -->
-

@@ -1,50 +1,55 @@
 {
-  "description": "项目配置文件",
-  "miniprogramRoot": "miniprogram/",
-  "compileType": "miniprogram",
-  "setting": {
-    "useCompilerPlugins": [
-      "typescript"
-    ],
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
+    "description": "项目配置文件",
+    "miniprogramRoot": "miniprogram/",
+    "compileType": "miniprogram",
+    "setting": {
+        "useCompilerPlugins": [
+            "typescript"
+        ],
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "coverView": false,
+        "postcss": false,
+        "minified": false,
+        "enhance": false,
+        "showShadowRootInWxmlPanel": false,
+        "packNpmRelationList": [
+            {
+                "packageJsonPath": "./miniprogram/package.json",
+                "miniprogramNpmDistDir": "./"
+            }
+        ],
+        "ignoreUploadUnusedFiles": true,
+        "compileHotReLoad": false,
+        "skylineRenderEnable": true,
+        "es6": false,
+        "compileWorklet": false,
+        "uglifyFileName": false,
+        "uploadWithSourceMap": true,
+        "packNpmManually": true,
+        "minifyWXSS": true,
+        "minifyWXML": true,
+        "localPlugins": false,
+        "condition": false,
+        "swc": false,
+        "disableSWC": true,
+        "disableUseStrict": false
     },
-    "coverView": false,
-    "postcss": false,
-    "minified": false,
-    "enhance": false,
-    "showShadowRootInWxmlPanel": false,
-    "packNpmRelationList": [],
-    "ignoreUploadUnusedFiles": true,
-    "compileHotReLoad": false,
-    "skylineRenderEnable": true,
-    "es6": false,
-    "compileWorklet": false,
-    "uglifyFileName": false,
-    "uploadWithSourceMap": true,
-    "packNpmManually": false,
-    "minifyWXSS": true,
-    "minifyWXML": true,
-    "localPlugins": false,
-    "condition": false,
-    "swc": false,
-    "disableSWC": true,
-    "disableUseStrict": false
-  },
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {},
-  "srcMiniprogramRoot": "miniprogram/",
-  "editorSetting": {
-    "tabIndent": "insertSpaces",
-    "tabSize": 2
-  },
-  "libVersion": "3.8.12",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
-  "appid": "wxf2def0a38fbb3fd5"
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "condition": {},
+    "srcMiniprogramRoot": "miniprogram/",
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 2
+    },
+    "libVersion": "3.8.12",
+    "packOptions": {
+        "ignore": [],
+        "include": []
+    },
+    "appid": "wxf2def0a38fbb3fd5"
 }

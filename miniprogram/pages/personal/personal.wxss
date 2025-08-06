@@ -1,1 +1,41 @@
 /* pages/personal/personal.wxss */
+
+/* 普通用户背景 */
+.normal-bkg {
+    background: linear-gradient(90deg, #F78CA0 0%, #FF6D57 19%, #F58F7F 60%);
+}
+
+/* 头像等信息展示框 */
+.info-shower {
+    display: flex;
+    align-items: center;
+}
+
+/* 昵称展示框 */
+.nickname-shower {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+    color: white;
+    z-index: 100;
+}
+
+/* 选项列表样式 */
+.list-view {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+    border-bottom: solid 1px #CCCCCC;
+}
+
+.icon-text-box {
+    display: flex;
+    align-items: center;
+}
+
+.list-view text {
+    margin-left: 15px;
+    
+}

@@ -1,5 +1,4 @@
 <!--pages/staticstics/statistics.wxml-->
-<!-- <view class="light-main"> -->
 <view class="light-main">
     <!-- ----------专注报表---------- -->
     <view class="title" style="width: 100%;">
@@ -54,4 +53,3 @@
 
     </view>
 </view>
-<!-- </view> -->

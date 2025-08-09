@@ -5,13 +5,18 @@
         <view class="light-out center" style="width: 184px; height: 184px; border-radius: 50%">
             <text class="counter" style="font-size: 48px;">25:00</text>
         </view>
+        <!-- 用于绘制弧线的canvas -->
+        <canvas type="2d" canvas-id="arcCanvas" style="width: 250px; height: 250px; position: absolute;"></canvas>
+
     </view>
 
     <!-- 滑动控件 -->
-    <view class="light-in slider-box" style="width: 300px; height: 60px; border-radius: 15px; margin-top: 15%;">
-        <view class="slider">
-            <image src="../../resources/light-icons/slider.png" style="width: 25px; height: 25px;"></image>
-        </view>
+    <view class="light-in slider-box center" style="width: 300px; height: 60px; border-radius: 15px; margin-top: 15%;">
+        <movable-area style="width: 290px; height: 50px;">
+            <movable-view id="slider" direction="horizontal" style="z-index: 100;" bind:touchend="onSliderEnd" bindchange="onSliderChange" x="{{slider_x}}">
+                <image src="../../resources/light-icons/slider.png" style="width: 25px; height: 25px;"></image>
+            </movable-view>
+        </movable-area>
         <text class="slider-tips"> >>>向右滑动开始专注 </text>
     </view>
 
@@ -38,7 +43,7 @@
             <image src="../../resources/light-icons/pmxz.png" style="width: 30px; height: 30px;"></image>
             <text>横屏</text>
         </button>
-        <button class="long-btn light-out" style="width: 80px; height: 90px;">
+        <button class="long-btn light-out" style="width: 80px; height: 90px; border: none;">
             <image src="../../resources/light-icons/phb.png" style="width: 30px; height: 30px;"></image>
             <text>排行榜</text>
         </button>

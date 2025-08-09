@@ -1,13 +1,16 @@
 <!--pages/focus/focus.wxml-->
 <view class="light-main">
     <!-- 计时器 -->
-    <view class="light-in center" style="min-width: 250px; min-height: 250px; border-radius: 50%; margin-top: 10%;">
-        <view class="light-out center" style="width: 184px; height: 184px; border-radius: 50%">
-            <text class="counter" style="font-size: 48px;">25:00</text>
+    <view class="light-in center" style="min-width: 250px; min-height: 250px; border-radius: 50%; margin-top: 15%;">
+        <view class="light-out center" style="background-color:#ecf0f3; width: 180px; height: 180px; border-radius: 50%">
+            <text class="counter" style="font-size: 40px;">{{currentTime.main}}</text>
+            <text style="font-size: 25px; color: #333333; ">:{{currentTime.seconds}}</text>
         </view>
-        <!-- 用于绘制弧线的canvas -->
-        <canvas type="2d" canvas-id="arcCanvas" style="width: 250px; height: 250px; position: absolute;"></canvas>
-
+        <!-- 圆形轨道容器 -->
+        <view class="track" style="width: 215px; height: 215px; position: absolute;">
+            <!-- 可拖拽按钮 -->
+            <view class="progress-btn" style="position: absolute; left: {{buttonPosition.left}}px; top: {{buttonPosition.top}}px;" bind:touchmove="onDragPgb"></view>
+        </view>
     </view>
 
     <!-- 滑动控件 -->

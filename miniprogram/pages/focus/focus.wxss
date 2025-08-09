@@ -72,3 +72,18 @@
     margin-left: 30px;
     color: #CCCCCC;
 }
+
+/* 计时进度条按钮轨道 */
+.track {
+    border-radius: 50%;
+}
+
+/* 计时器进度条按钮 */
+.progress-btn {
+    width: 30px;
+    height: 30px;
+    border: solid 5px white;
+    border-radius: 50%;
+    background: #ff6347;
+    box-shadow: 0px 0px 15px  #666666;
+}

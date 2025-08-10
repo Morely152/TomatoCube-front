@@ -20,11 +20,12 @@ Page({
         maxMinutes: 120, // 最大分钟数
         minMinutes: 0, // 最小分钟数
         is_vibrated: false,
+        show_bzy: false,
     },
 
     // 点击导航栏跳转到此页面时
     onTabItemTap() {
-        wx.vibrateShort({ type: 'heavy' }); 
+        wx.vibrateShort({ type: 'heavy' });
     },
 
     // 松开滑动开关
@@ -45,7 +46,7 @@ Page({
         // 到位振动提醒
         if (this.data.slider_x >= 220 && this.data.is_vibrated == false && event.detail.source == "touch") {
             wx.vibrateShort({ type: 'heavy' });
-            this.setData({is_vibrated : true})
+            this.setData({ is_vibrated: true })
         }
     },
 
@@ -262,5 +263,30 @@ Page({
      */
     onShareAppMessage() {
 
+    },
+
+    // 未实现功能，提醒等待升级
+    waitingUpdate() {
+        wx.showToast({
+            title: '开发中，敬请期待…',
+            icon: 'none',
+            duration: 2000
+        })
+    },
+
+    // 弹层显示管理
+    showBzy() {
+        this.setData({ show_bzy: true });
+      },
+    
+      closeBzy() {
+        this.setData({ show_bzy: false });
+      },
+
+    //   打开排行榜
+    goToRanklist() {
+        wx.navigateTo({
+            url: '../rank_list/rank_list'
+        })
     }
 })

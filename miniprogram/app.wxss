@@ -21,11 +21,13 @@
 
 /* 浅色-凹陷阴影 */
 .light-in {
+    background-color: #ecf0f3;
     box-shadow:inset 5px 5px 15px  #B0BFBF,inset -5px -5px 100px  #ffffff;
 }
 
 /* 浅色-凸出阴影 */
 .light-out {
+    background-color: #ecf0f3;
     box-shadow: -10px -10px 15px  #FFFFFF, 10px 10px 15px  #D1D9E6;
 }
 
@@ -40,4 +42,20 @@
 /* 定位边框 */
 .border {
     border: solid 1px red;
+}
+
+/* 按钮去边框 */
+button {
+    margin: 0;
+    padding: 0;
+    background-color: inherit;
+    position: static;
+}
+ 
+button:after {
+    content: none;
+}
+ 
+button::after {
+    border: none;
 }

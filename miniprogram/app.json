@@ -4,12 +4,16 @@
     "pages/task/task",
     "pages/statistics/statistics",
     "pages/personal/personal",
+    "pages/rank_list/rank_list",
     "pages/logs/logs"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Weixin",
     "navigationBarBackgroundColor": "#ffffff"
+  },
+  "usingComponents": {
+    "van-popup": "@vant/weapp/popup/index"  
   },
   "componentFramework": "glass-easel",
   "lazyCodeLoading": "requiredComponents",

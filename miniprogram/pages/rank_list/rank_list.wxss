@@ -1,0 +1,84 @@
+/* pages/rank_list/rank_list.wxss */
+
+.light-bkg {
+    background-color: #ecf0f3;
+    border-radius: 8px;
+}
+
+.hori-layout {
+    display: flex;
+}
+
+.top-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    height: calc(100% - 30px);
+    border-radius: 8px;
+    flex: 1;
+}
+
+.data-main {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff6347;
+    text-align: center;
+}
+
+.data-tip {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #333333;
+    text-align: center;
+}
+
+.rank-box {
+    width: 95%;
+    height: 10%;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.rank-num {
+    width: 25px; height: 25px;
+    margin-left: 12px;
+}
+
+.shot-box {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 12px;
+}
+
+.user-name {
+    margin-left: 5px;
+}
+
+.emp-focus-time {
+    position: absolute;
+    right: 0;
+    margin-right: 50px;
+    font-size: 15px;
+    color: #ff6347;
+    font-weight: bold;
+}
+
+.focus-time {
+    position: absolute;
+    right: 0;
+    margin-right: 50px;
+    font-size: 15px;
+    font-weight: bold;
+}

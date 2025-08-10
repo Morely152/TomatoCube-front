@@ -19,6 +19,12 @@ Page({
         isDragging: false, // 标记是否正在拖动
         maxMinutes: 120, // 最大分钟数
         minMinutes: 0, // 最小分钟数
+        is_vibrated: false,
+    },
+
+    // 点击导航栏跳转到此页面时
+    onTabItemTap() {
+        wx.vibrateShort({ type: 'heavy' }); 
     },
 
     // 松开滑动开关
@@ -28,13 +34,19 @@ Page({
         }
 
         this.setData({
-            slider_x: 0
+            slider_x: 0,
+            is_vibrated: false
         })
     },
 
     // 滑动开关时
     onSliderChange(event: WechatMiniprogram.MovableViewChange) {
         this.data.slider_x = event.detail.x;
+        // 到位振动提醒
+        if (this.data.slider_x >= 220 && this.data.is_vibrated == false && event.detail.source == "touch") {
+            wx.vibrateShort({ type: 'heavy' });
+            this.setData({is_vibrated : true})
+        }
     },
 
     // 拖动进度条按钮时

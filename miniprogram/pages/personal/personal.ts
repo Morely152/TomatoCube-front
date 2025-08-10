@@ -8,6 +8,11 @@ Page({
 
   },
 
+      // 点击导航栏跳转到此页面时
+      onTabItemTap() {
+        wx.vibrateShort({ type: 'heavy' }); 
+    },
+
   /**
    * 生命周期函数--监听页面加载
    */

@@ -80,10 +80,11 @@
 
 /* 计时器进度条按钮 */
 .progress-btn {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     border: solid 5px white;
     border-radius: 50%;
     background: #ff6347;
     box-shadow: 0px 0px 15px  #666666;
+    z-index: 100;
 }

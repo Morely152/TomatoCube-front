@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: center;
     width: 80px;
-    height: 60px;
+    margin: 5% 0;
     border-radius: 15px;
 }
 
@@ -38,7 +38,8 @@
     align-items: center;
     justify-content: center;
     width: 80px;
-    height: 150%;
+    height: 100%;
+    max-height: 120px;
     border-radius: 15px;
 }
 
@@ -85,6 +86,18 @@
     border: solid 5px white;
     border-radius: 50%;
     background: #ff6347;
-    box-shadow: 0px 0px 15px  #666666;
+    box-shadow: 0px 0px 15px  #CCCCCC;
     z-index: 100;
+    /* transform: translate(-50%, -50%); */
+}
+
+/* 按钮盒子 */
+.button-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.onBtnPushed {
+    background-color: #ddd;
 }

@@ -5,19 +5,19 @@
             <image src="../../resources/light-icons/rank-title.png" style="width: 220px; height:66px; margin: auto;"></image>
             <view class="center" style="height: 30px;">
                 <!-- 日榜/周榜切换 -->
-                <view class="top-btn" style="flex: 1; border: solid white 1px; margin: 4px 6px; border-radius: 8px; height: 25px;" bindtap="switchRankType">
+                <view hover-class="onBtnPushed" class="top-btn" style="flex: 1; border: solid white 1px; margin: 4px 6px; border-radius: 8px; height: 25px;" bindtap="switchRankType">
                     <image src="../../resources/light-icons/turn.png" style="width: 16px; height: 16px; margin-right: 5px;"></image>
                     <text style="color: white;">{{rankType === 'daily' ? '日榜' : '周榜'}}</text>
                 </view>
 
                 <!-- 分享按钮 -->
-                <view class="top-btn" style="flex: 1; border: solid white 1px; margin: 4px 6px; border-radius: 8px; height: 25px;" bindtap="shareRank">
+                <view hover-class="onBtnPushed" class="top-btn" style="flex: 1; border: solid white 1px; margin: 4px 6px; border-radius: 8px; height: 25px;" bindtap="shareRank">
                     <image src="../../resources/light-icons/share.png" style="width: 16px; height: 16px; margin-right: 5px;"></image>
                     <text style="color: white;">分享</text>
                 </view>
 
                 <!-- 刷新按钮 -->
-                <view class="top-btn" style="flex: 1; border: solid white 1px; margin: 4px 6px; border-radius: 8px; height: 25px;" bindtap="refreshData" bind:tap="refreshData">
+                <view hover-class="onBtnPushed" class="top-btn" style="flex: 1; border: solid white 1px; margin: 4px 6px; border-radius: 8px; height: 25px;" bindtap="refreshData" bind:tap="refreshData">
                     <image src="../../resources/light-icons/refresh.png" style="width: 16px; height: 16px; margin-right: 5px;"></image>
                     <text style="color: white;">刷新</text>
                 </view>

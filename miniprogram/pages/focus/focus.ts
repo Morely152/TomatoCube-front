@@ -1,4 +1,3 @@
-// pages/focus/focus.ts
 Page({
     /**
      * 页面的初始数据
@@ -7,18 +6,20 @@ Page({
         slider_x: 0,
         btn_x: 0,
         btn_y: 0,
-        buttonPosition: { left: 107.5 + 107.5 * Math.sin(Math.PI / 12 * 5) - 15, top: 107.5 - 107.5 * Math.cos(Math.PI / 12 * 5) - 15 },
         currentTime: {
             main: "00:25",
             seconds: "00"
         },
-        lastAngle: Math.PI / 12 * (-1),
-        totalDiff: 5 * Math.PI / 12 * 5,
+        totalDiff: 0,
         lastDisplayedMinutes: 25,
         canvasContext: null as any, // 存储 Canvas 上下文
-        isDragging: false, // 标记是否正在拖动
-        maxMinutes: 120, // 最大分钟数
-        minMinutes: 0, // 最小分钟数
+        buttonPosition: { left: 0, top: 0 }, // 初始位置将在init中计算
+        lastAngle: -Math.PI / 12, // 25分钟对应的初始角度
+        canvasSize: 0, // 动态计算的canvas大小
+        trackSize: 0, // 轨道容器的尺寸
+        isDragging: false,
+        maxMinutes: 120,
+        minMinutes: 0,
         is_vibrated: false,
         show_bzy: false,
     },
@@ -54,45 +55,67 @@ Page({
     onDragPgb(event: WechatMiniprogram.TouchEvent) {
         this.setData({ isDragging: true });
 
-        const query = wx.createSelectorQuery();
+        const query = wx.createSelectorQuery().in(this);
         query.select('.track').boundingClientRect((res) => {
-            const centerX = res.left + res.width / 2;
-            const centerY = res.top + res.height / 2;
-            const touchX = event.touches[0].clientX - centerX;
-            const touchY = event.touches[0].clientY - centerY;
+            const centerX = res.width / 2;
+            const centerY = res.height / 2;
+            const radius = centerX * 0.85; // 与进度条半径保持一致
+            
+            const touchX = event.touches[0].clientX - res.left;
+            const touchY = event.touches[0].clientY - res.top;
 
             // 计算当前角度（弧度）
-            let currentAngle = Math.atan2(touchY, touchX);
-
-            // 转换为0-2π范围
-            if (currentAngle < -Math.PI / 2) currentAngle += 2 * Math.PI;
-
-            // 计算当前分钟数
-            const minutes = this.calculateMinutesFromAngle(currentAngle);
-
-            // 限位判断
-            if (minutes <= this.data.minMinutes && currentAngle < -Math.PI / 2 + 0.1) {
-                currentAngle = -Math.PI / 2; // 锁定在00:00位置
-            } else if (minutes >= this.data.maxMinutes && currentAngle > 3 * Math.PI / 2 - 0.1) {
-                currentAngle = 3 * Math.PI / 2; // 锁定在02:00位置
-            }
-
-            // 固定半径
-            const radius = 107.5;
-            const targetX = centerX + radius * Math.cos(currentAngle);
-            const targetY = centerY + radius * Math.sin(currentAngle);
+            let currentAngle = Math.atan2(touchY - centerY, touchX - centerX);
+            
+            // 确保按钮始终在圆环上
+            currentAngle = this.constrainAngleToCircle(currentAngle);
+            
+            // 计算PX位置 - 确保按钮在圆环上
+            const pxX = centerX + radius * Math.cos(currentAngle);
+            const pxY = centerY + radius * Math.sin(currentAngle);
 
             this.setData({
                 buttonPosition: {
-                    left: targetX - res.left - 15,
-                    top: targetY - res.top - 15,
-                }
+                    left: pxX,
+                    top: pxY
+                },
+                trackSize: res.width
             });
 
             // 更新进度条和时间显示
             this.drawProgress(currentAngle);
             this.updateTime(currentAngle);
         }).exec();
+    },
+
+    // 拖动结束时校准位置
+    onDragEnd() {
+        const { lastDisplayedMinutes, trackSize } = this.data;
+        if (trackSize > 0) {
+            const center = trackSize / 2;
+            const radius = center * 0.85;
+            const syncedAngle = this.calculateAngleFromMinutes(lastDisplayedMinutes);
+            
+            this.setData({
+                lastAngle: syncedAngle,
+                buttonPosition: {
+                    left: center + radius * Math.cos(syncedAngle),
+                    top: center + radius * Math.sin(syncedAngle)
+                },
+                isDragging: false
+            });
+            this.drawProgress(syncedAngle);
+        }
+    },
+
+    // 约束角度，确保按钮始终在圆环上
+    constrainAngleToCircle(angle: number): number {
+        // 计算角度对应的分钟数
+        const minutes = this.calculateMinutesFromAngle(angle);
+        const clampedMinutes = Math.max(this.data.minMinutes, Math.min(this.data.maxMinutes, minutes));
+        
+        // 根据约束后的分钟数反推角度，确保按钮在圆环上
+        return this.calculateAngleFromMinutes(clampedMinutes);
     },
 
     // 根据角度计算分钟数
@@ -102,28 +125,27 @@ Page({
         if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI;
 
         // 计算分钟数（2π对应120分钟）
-        const minutes = (normalizedAngle / (2 * Math.PI)) * 120;
-        return Math.round(minutes / 5) * 5; // 5分钟为步长
+        return (normalizedAngle / (2 * Math.PI)) * this.data.maxMinutes;
+    },
+
+    // 根据分钟数计算角度
+    calculateAngleFromMinutes(minutes: number): number {
+        // 将分钟数转换为角度（120分钟对应2π）
+        const normalizedAngle = (minutes / this.data.maxMinutes) * 2 * Math.PI;
+        // 转换为从右侧开始的角度（减去90度即-π/2）
+        return normalizedAngle - Math.PI / 2;
     },
 
     updateTime(currentAngle: number) {
-        const { lastAngle, totalDiff, lastDisplayedMinutes } = this.data;
-        let angleDiff = currentAngle - lastAngle;
-
-        // 处理角度跳变（跨过Math.PI边界）
-        if (angleDiff > Math.PI) angleDiff -= 2 * Math.PI;
-        if (angleDiff < -Math.PI) angleDiff += 2 * Math.PI;
-
-        const newTotalDiff = totalDiff + angleDiff;
-
-        // 计算当前分钟数
+        // 计算当前分钟数并取5分钟步长
         const minutes = this.calculateMinutesFromAngle(currentAngle);
         const clampedMinutes = Math.max(this.data.minMinutes, Math.min(this.data.maxMinutes, minutes));
+        const roundedMinutes = Math.round(clampedMinutes / 5) * 5;
 
         // 只有当分钟数变化时才更新显示和振动
-        if (clampedMinutes !== lastDisplayedMinutes) {
-            const hours = Math.floor(clampedMinutes / 60);
-            const mins = clampedMinutes % 60;
+        if (roundedMinutes !== this.data.lastDisplayedMinutes) {
+            const hours = Math.floor(roundedMinutes / 60);
+            const mins = roundedMinutes % 60;
 
             // 触发振动
             wx.vibrateShort({ type: 'heavy' });
@@ -133,15 +155,13 @@ Page({
                     main: `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`,
                     seconds: "00"
                 },
-                lastDisplayedMinutes: clampedMinutes,
+                lastDisplayedMinutes: roundedMinutes,
                 lastAngle: currentAngle,
-                totalDiff: newTotalDiff,
             });
         } else {
             // 分钟数没变化时只更新角度数据
             this.setData({
                 lastAngle: currentAngle,
-                totalDiff: newTotalDiff,
             });
         }
     },
@@ -162,65 +182,78 @@ Page({
 
     // 初始化 Canvas
     async initCanvas() {
-        const query = wx.createSelectorQuery();
-        query.select('#progressCanvas')
-            .fields({ node: true, size: true })
-            .exec(async (res) => {
-                const canvas = res[0].node;
-                const ctx = canvas.getContext('2d');
+        try {
+            const query = wx.createSelectorQuery().in(this);
 
-                // 设置 Canvas 实际渲染尺寸
-                const dpr = wx.getSystemInfoSync().pixelRatio;
-                canvas.width = 215 * dpr;
-                canvas.height = 215 * dpr;
-                ctx.scale(dpr, dpr);
+            // 先获取容器尺寸
+            query.select('.track').boundingClientRect((trackRes) => {
+                const size = Math.min(trackRes.width, trackRes.height);
+                const center = size / 2;
+                const radius = center * 0.85; // 与进度条半径保持一致
+                
+                // 计算初始按钮位置（PX单位）
+                const initialAngle = this.data.lastAngle;
+                const initialX = center + radius * Math.cos(initialAngle);
+                const initialY = center + radius * Math.sin(initialAngle);
 
-                this.setData({ canvasContext: ctx });
-                this.drawProgress(this.data.lastAngle);
-            });
+                this.setData({ 
+                    canvasSize: size, 
+                    trackSize: size,
+                    buttonPosition: {
+                        left: initialX,
+                        top: initialY
+                    }
+                });
+
+                // 然后获取Canvas节点
+                const canvasQuery = wx.createSelectorQuery().in(this);
+                canvasQuery.select('#progressCanvas')
+                    .fields({ node: true, size: true })
+                    .exec((canvasRes) => {
+                        if (!canvasRes[0] || !canvasRes[0].node) {
+                            console.error('Canvas node not found');
+                            return;
+                        }
+
+                        const canvas = canvasRes[0].node;
+                        const ctx = canvas.getContext('2d');
+
+                        // 设置 Canvas 实际渲染尺寸
+                        const dpr = wx.getSystemInfoSync().pixelRatio;
+                        canvas.width = size * dpr;
+                        canvas.height = size * dpr;
+                        ctx.scale(dpr, dpr);
+
+                        this.setData({ canvasContext: ctx }, () => {
+                            // 初始化绘制进度条
+                            this.drawProgress(initialAngle);
+                        });
+                    });
+            }).exec();
+        } catch (error) {
+            console.error('Canvas initialization failed:', error);
+        }
     },
 
     // 绘制进度条
     drawProgress(currentAngle: number) {
         const ctx = this.data.canvasContext;
-        if (!ctx) return;
+        const size = this.data.canvasSize;
+        if (!ctx || !size) return;
 
         // 清除画布
-        ctx.clearRect(0, 0, 215, 215);
+        ctx.clearRect(0, 0, size, size);
 
-        // 计算当前分钟数
-        const minutes = this.calculateMinutesFromAngle(currentAngle);
+        const center = size / 2;
+        const radius = center * 0.85; // 进度条半径
 
-        // 绘制进度条
+        // 绘制主进度条（从顶部开始到当前角度）
         ctx.beginPath();
-
-        // 起始角度始终是顶部（-π/2）
-        let startAngle = -Math.PI / 2;
-
-        // 结束角度
-        let endAngle = currentAngle;
-
-        // 如果超过1小时（60分钟），则固定结束角度为3π/2（即1小时位置）
-        if (minutes > 60) {
-            endAngle = Math.PI / 2; // 3π/2 - 2π = -π/2，但我们需要正角度
-        }
-
-        // 绘制主进度条
-        ctx.arc(107.5, 107.5, 92, startAngle, endAngle, false);
-        ctx.strokeStyle = '#ff6347'; // 进度条颜色
-        ctx.lineWidth = 20;
+        ctx.arc(center, center, radius, -Math.PI / 2, currentAngle, false);
+        ctx.strokeStyle = '#ff6347';
+        ctx.lineWidth = size * 0.09; // 响应式线宽
         ctx.lineCap = 'round';
         ctx.stroke();
-
-        // 如果超过1小时，绘制第二段进度条（固定颜色）
-        if (minutes > 60) {
-            ctx.beginPath();
-            ctx.arc(107.5, 107.5, 92, Math.PI / 2, currentAngle, false);
-            ctx.strokeStyle = '#ff6347'; // 可以设置为不同颜色
-            ctx.lineWidth = 20;
-            ctx.lineCap = 'round';
-            ctx.stroke();
-        }
     },
 
     /**
@@ -277,13 +310,13 @@ Page({
     // 弹层显示管理
     showBzy() {
         this.setData({ show_bzy: true });
-      },
-    
-      closeBzy() {
-        this.setData({ show_bzy: false });
-      },
+    },
 
-    //   打开排行榜
+    closeBzy() {
+        this.setData({ show_bzy: false });
+    },
+
+    // 打开排行榜
     goToRanklist() {
         wx.navigateTo({
             url: '../rank_list/rank_list'

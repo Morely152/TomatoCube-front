@@ -82,3 +82,7 @@
     font-size: 15px;
     font-weight: bold;
 }
+
+.onBtnPushed {
+    background-color:rgba(255,255,255,0.2);
+}

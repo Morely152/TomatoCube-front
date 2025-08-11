@@ -1,61 +1,70 @@
 <!--pages/focus/focus.wxml-->
 <view class="light-main">
-    <view class="light-in center" style="min-width: 250px; min-height: 250px; border-radius: 50%; margin-top: 15%;">
-        <view class="light-out center" style="background-color:#ecf0f3; width: 180px; height: 180px; border-radius: 50%">
-            <text class="counter" style="font-size: 40px;">{{currentTime.main}}</text>
-            <text style="font-size: 25px; color: #333333; ">:{{currentTime.seconds}}</text>
+    <!-- 外层圆形容器 -->
+    <view class="light-in center" style="width: 70%; max-width: 300px; aspect-ratio: 1/1; border-radius: 50%; margin-top: 10%; position: relative;">
+        <!-- 内层圆形 -->
+        <view class="light-out center" style="background-color:#ecf0f3; width: 72%; aspect-ratio: 1/1; border-radius: 50%">
+            <!-- 计时器文字 -->
+            <text class="counter" style="font-size: min(12vw, 40px);">{{currentTime.main}}</text>
+            <text style="font-size: min(8vw, 25px); color: #333333;">:{{currentTime.seconds}}</text>
         </view>
+
         <!-- 圆形轨道容器 -->
-        <view class="track center" style="width: 215px; height: 215px; position: absolute;">
-            <!-- 添加 Canvas 用于绘制进度条 -->
-            <canvas type="2d" id="progressCanvas" style="width: 250px; height: 250px; position: absolute; z-index: 10;"></canvas>
+        <view class="track center" style="width: 100%; height: 100%; position: absolute;">
+            <!-- Canvas 进度条 -->
+            <canvas type="2d" id="progressCanvas" style="width: 100%; height: 100%; position: absolute;"></canvas>
             <!-- 可拖拽按钮 -->
-            <view class="progress-btn" style="position: absolute; left: {{buttonPosition.left}}px; top: {{buttonPosition.top}}px;" bind:touchmove="onDragPgb"></view>
+            <view class="progress-btn" style="width: 30px; height: 30px; border-radius: 50%; position: absolute; transform: translate(-50%, -50%); left: {{buttonPosition.left}}px; top: {{buttonPosition.top}}px;" bind:touchmove="onDragPgb">
+            </view>
         </view>
     </view>
 
-    <!-- 滑动控件 -->
-    <view class="light-in slider-box center" style="width: 300px; height: 60px; border-radius: 15px; margin-top: 15%;">
-        <movable-area style="width: 290px; height: 50px;">
-            <movable-view id="slider" direction="horizontal" style="z-index: 100;" bind:touchend="onSliderEnd" bindchange="onSliderChange" x="{{slider_x}}">
-                <image src="../../resources/light-icons/slider.png" style="width: 25px; height: 25px;"></image>
-            </movable-view>
-        </movable-area>
-        <text class="slider-tips"> >>>向右滑动开始专注 </text>
-    </view>
-
-    <!-- 专注选择按钮 -->
-    <view class="btn-line-1" style="width: 300px; height: 60px; margin-top: 10%;">
-        <button class="wide-btn light-out" style="background-color: #ff6347; margin-right: 14px; width: 145px;">
-            <image src="../../resources/light-icons/user-icon.png" style="width: 24px; height: 24px; "></image>
-            <text style="color: #ffffff;">个人专注</text>
-        </button>
-        <button class="wide-btn light-out" style="width: 145px;" bind:tap="waitingUpdate">
-            <image src="../../resources/light-icons/group-icon.png" style="width: 24px; height: 24px;"></image>
-            <text>组队专注</text>
-        </button>
-    </view>
-
-    <!-- 白噪音弹层 -->
-    <van-popup show="{{show_bzy}}" bind:close="closeBzy" closeable="true" round="true">
-        <view class="light-main" style="width: 300px; height: 500px;">
-            <text style="font-size: 20px; margin-top: 20px;">白噪音播放器</text>
+    <!-- 下面一部分控件按钮 -->
+    <view class="button-box" style="width: 80%; height: 45%; margin: auto;">
+        <!-- 滑动控件 -->
+        <view class="light-in slider-box center" style="height: min(30%, 70px); border-radius: 15px;">
+            <movable-area style="width: 95%; height:80%; width: {{slider_width}};">
+                <movable-view id="slider" direction="horizontal" style="z-index: 100; width: 18%; height: 100%;" bind:touchend="onSliderEnd" bindchange="onSliderChange" x="{{slider_x}}">
+                    <image src="../../resources/light-icons/slider.png" style="width: 50%; height: 50%;"></image>
+                </movable-view>
+            </movable-area>
+            <text class="slider-tips"> >>>向右滑动开始专注 </text>
         </view>
-    </van-popup>
 
-    <!-- 底排小按钮 -->
-    <view class="btn-line-2" style="margin-top: 30px;">
-        <button class="long-btn light-out" style="width: 80px; height: 90px;" bind:tap="showBzy">
-            <image src="../../resources/light-icons/bzy.png" style="width: 30px; height: 30px;"></image>
-            <text>白噪音</text>
-        </button>
-        <button class="long-btn light-out" style="margin: 0 30px; width: 80px; height: 90px;" bind:tap="waitingUpdate">
-            <image src="../../resources/light-icons/pmxz.png" style="width: 30px; height: 30px;"></image>
-            <text>横屏</text>
-        </button>
-        <button class="long-btn light-out" style="width: 80px; height: 90px; border: none;" bind:tap="goToRanklist">
-            <image src="../../resources/light-icons/phb.png" style="width: 30px; height: 30px;"></image>
-            <text>排行榜</text>
-        </button>
+        <!-- 第一排按钮 -->
+        <view class="btn-line-1" style="height: 30%; margin-top: 5%;">
+            <button class="wide-btn light-out" style="background-color: #ff6347; margin-right: 14px; flex: 1;">
+                <image src="../../resources/light-icons/user-icon.png" style="width: 24px; height: 24px; "></image>
+                <text style="color: #ffffff;">个人专注</text>
+            </button>
+            <button hover-class="onBtnPushed" class="wide-btn light-out" style="flex: 1;" bind:tap="waitingUpdate">
+                <image src="../../resources/light-icons/group-icon.png" style="width: 24px; height: 24px;"></image>
+                <text>组队专注</text>
+            </button>
+        </view>
+
+        <!-- 第二排按钮 -->
+        <view class="btn-line-2" style="height: 40%;">
+            <button hover-class="onBtnPushed" class="long-btn light-out" style="flex: 1;" bind:tap="showBzy">
+                <image src="../../resources/light-icons/bzy.png" style="width: 30px; height: 30px;"></image>
+                <text>白噪音</text>
+            </button>
+            <button hover-class="onBtnPushed" class="long-btn light-out" style="margin: 0 7%; flex: 1;" bind:tap="waitingUpdate">
+                <image src="../../resources/light-icons/pmxz.png" style="width: 30px; height: 30px;"></image>
+                <text>横屏</text>
+            </button>
+            <button hover-class="onBtnPushed" class="long-btn light-out" style="flex: 1;" bind:tap="goToRanklist">
+                <image src="../../resources/light-icons/phb.png" style="width: 30px; height: 30px;"></image>
+                <text>排行榜</text>
+            </button>
+        </view>
+
+        <!-- 白噪音弹层 -->
+        <van-popup show="{{show_bzy}}" bind:close="closeBzy" closeable="true" round="true">
+            <view class="light-main" style="width: 300px; height: 500px;">
+                <text style="font-size: 20px; margin-top: 20px;">白噪音播放器</text>
+            </view>
+        </van-popup>
+
     </view>
 </view>

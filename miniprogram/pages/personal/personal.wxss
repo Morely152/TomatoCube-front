@@ -21,13 +21,24 @@
     z-index: 100;
 }
 
+/* 选项列表布局 */
+.list-box {
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+}
+
 /* 选项列表样式 */
 .list-view {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 45px;
-    border-bottom: solid 1px #CCCCCC;
+    border-top: solid 1px #d1d9e6;
+    border-bottom: solid 1px #d1d9e6;
+    height: min(10%, 50px);
+    margin: auto;
+    padding: 0 5%;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .icon-text-box {
@@ -37,5 +48,8 @@
 
 .list-view text {
     margin-left: 15px;
-    
+}
+
+.onBtnPushed {
+    background-color: #ddd;
 }

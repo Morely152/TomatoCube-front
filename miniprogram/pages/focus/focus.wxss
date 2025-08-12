@@ -99,5 +99,5 @@
 }
 
 .onBtnPushed {
-    background-color: #ddd;
+    background-color: #919191;
 }

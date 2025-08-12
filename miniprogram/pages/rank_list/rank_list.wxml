@@ -29,17 +29,17 @@
     <!-- 数据展示 -->
     <view class="light-bkg center" style="width: 90%; height: 15%; z-index: 100;">
         <!-- 在线人数/本周用户 -->
-        <view class="light-out data-box">
+        <view hover-class="onBoxPushed" class="light-out data-box">
             <text class="data-main">{{rankType === 'daily' ? dailyData.onlineCount : weeklyData.onlineCount}}</text>
             <text class="data-tip">{{rankType === 'daily' ? '在线人数/人' : '本周用户/人'}}</text>
         </view>
         <!-- 今日总专注/本周总专注 -->
-        <view class="light-out data-box">
+        <view hover-class="onBoxPushed" class="light-out data-box">
             <text class="data-main">{{rankType === 'daily' ? dailyData.totalFocus : weeklyData.totalFocus}}</text>
-            <text class="data-tip">{{rankType === 'daily' ? '今日总专注/分钟' : '本周总专注/分钟'}}</text>
+            <text class="data-tip">累计专注/分钟</text>
         </view>
         <!-- 今日队伍/本周队伍 -->
-        <view class="light-out data-box">
+        <view hover-class="onBoxPushed" class="light-out data-box">
             <text class="data-main">{{rankType === 'daily' ? dailyData.teamCount : weeklyData.teamCount}}</text>
             <text class="data-tip">{{rankType === 'daily' ? '今日队伍/支' : '本周队伍/支'}}</text>
         </view>

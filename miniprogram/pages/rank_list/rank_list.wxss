@@ -86,3 +86,7 @@
 .onBtnPushed {
     background-color:rgba(255,255,255,0.2);
 }
+
+.onBoxPushed {
+    background-color: #dadada;
+}

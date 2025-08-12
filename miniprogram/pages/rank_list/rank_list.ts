@@ -67,7 +67,7 @@ Page({
     shareRank() {
         // 这里还没实现
         wx.showToast({
-            title: '还没弄清楚怎么直接分享，先点击右上角分享吧(；′⌒`)',
+            title: '还没学会怎么做分享，先点击右上角分享吧(；′⌒`)',
             icon: 'none',
             duration: 2000
         })

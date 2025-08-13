@@ -22,6 +22,74 @@ Page({
         minMinutes: 0,
         is_vibrated: false,
         show_bzy: false,
+        soundItems: [
+            {
+                name: "繁喧饭店",
+                icon: "../../resources/light-icons/sound_1.png",
+                checkedIcon: "../../resources/light-icons/sound_1_c.png",
+                soundPath: "https://tomatocube-sounds.oss-cn-shenzhen.aliyuncs.com/cofe.mp3",
+                checked: false
+            },
+            {
+                name: "禅声回荡",
+                icon: "../../resources/light-icons/sound_2.png",
+                checkedIcon: "../../resources/light-icons/sound_2_c.png",
+                soundPath: "https://tomatocube-sounds.oss-cn-shenzhen.aliyuncs.com/temple.mp3",
+                checked: false
+            },
+            {
+                name: "和风海滩",
+                icon: "../../resources/light-icons/sound_3.png",
+                checkedIcon: "../../resources/light-icons/sound_3_c.png",
+                soundPath: "https://tomatocube-sounds.oss-cn-shenzhen.aliyuncs.com/wave.mp3",
+                checked: false
+            },
+            {
+                name: "大漠孤烟",
+                icon: "../../resources/light-icons/sound_4.png",
+                checkedIcon: "../../resources/light-icons/sound_4_c.png",
+                soundPath: "https://tomatocube-sounds.oss-cn-shenzhen.aliyuncs.com/desert.mp3",
+                checked: false
+            },
+            {
+                name: "雨夜炉火",
+                icon: "../../resources/light-icons/sound_5.png",
+                checkedIcon: "../../resources/light-icons/sound_5_c.png",
+                soundPath: "https://tomatocube-sounds.oss-cn-shenzhen.aliyuncs.com/thunder.mp3",
+                checked: false
+            },
+            {
+                name: "林海鸟啼",
+                icon: "../../resources/light-icons/sound_6.png",
+                checkedIcon: "../../resources/light-icons/sound_6_c.png",
+                soundPath: "https://tomatocube-sounds.oss-cn-shenzhen.aliyuncs.com/wood.mp3",
+                checked: false
+            },
+            {
+                name: "蝉声蛙鸣",
+                icon: "../../resources/light-icons/sound_7.png",
+                checkedIcon: "../../resources/light-icons/sound_7_c.png",
+                soundPath: "https://tomatocube-sounds.oss-cn-shenzhen.aliyuncs.com/frog.mp3",
+                checked: false
+            },
+            {
+                name: "火车铁轨",
+                icon: "../../resources/light-icons/sound_8.png",
+                checkedIcon: "../../resources/light-icons/sound_8_c.png",
+                soundPath: "https://tomatocube-sounds.oss-cn-shenzhen.aliyuncs.com/train.mp3",
+                checked: false
+            },
+            {
+                name: "高速路旁",
+                icon: "../../resources/light-icons/sound_9.png",
+                checkedIcon: "../../resources/light-icons/sound_9_c.png",
+                soundPath: "https://tomatocube-sounds.oss-cn-shenzhen.aliyuncs.com/road.mp3",
+                checked: false,
+            },
+        ],
+        audioManager: wx.getBackgroundAudioManager(),
+        isPlaying: false,
+        currentAudioContext: null as WechatMiniprogram.InnerAudioContext | null, // 明确声明类型
     },
 
     // 点击导航栏跳转到此页面时
@@ -60,16 +128,16 @@ Page({
             const centerX = res.width / 2;
             const centerY = res.height / 2;
             const radius = centerX * 0.85; // 与进度条半径保持一致
-            
+
             const touchX = event.touches[0].clientX - res.left;
             const touchY = event.touches[0].clientY - res.top;
 
             // 计算当前角度（弧度）
             let currentAngle = Math.atan2(touchY - centerY, touchX - centerX);
-            
+
             // 确保按钮始终在圆环上
             currentAngle = this.constrainAngleToCircle(currentAngle);
-            
+
             // 计算PX位置 - 确保按钮在圆环上
             const pxX = centerX + radius * Math.cos(currentAngle);
             const pxY = centerY + radius * Math.sin(currentAngle);
@@ -95,7 +163,7 @@ Page({
             const center = trackSize / 2;
             const radius = center * 0.85;
             const syncedAngle = this.calculateAngleFromMinutes(lastDisplayedMinutes);
-            
+
             this.setData({
                 lastAngle: syncedAngle,
                 buttonPosition: {
@@ -113,7 +181,7 @@ Page({
         // 计算角度对应的分钟数
         const minutes = this.calculateMinutesFromAngle(angle);
         const clampedMinutes = Math.max(this.data.minMinutes, Math.min(this.data.maxMinutes, minutes));
-        
+
         // 根据约束后的分钟数反推角度，确保按钮在圆环上
         return this.calculateAngleFromMinutes(clampedMinutes);
     },
@@ -166,19 +234,83 @@ Page({
         }
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad() {
+    // 处理点击事件
+    handleSoundSwitch(e: WechatMiniprogram.TouchEvent) {
+        const index = e.currentTarget.dataset.index;
+        const soundItems = this.data.soundItems.map((item, i) => ({
+            ...item,
+            checked: i === index
+        }));
 
+        this.setData({ soundItems });
+
+        // 停止当前播放的音频
+        this.stopCurrentAudio();
+        
+        // 播放新选择的音频
+        this.playSoundEffect(index);
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {
-        this.initCanvas();
+    // 停止当前音频
+    stopCurrentAudio() {
+        const { currentAudioContext, audioManager } = this.data;
+        
+        // 停止innerAudioContext
+        if (currentAudioContext) {
+            currentAudioContext.stop();
+            currentAudioContext.destroy();
+            this.setData({ currentAudioContext: null });
+        }
+        
+        // 停止backgroundAudioManager
+        if (audioManager) {
+            audioManager.stop();
+        }
+        
+        this.setData({ isPlaying: false });
     },
+
+    playSoundEffect(index: number) {
+        const { soundItems } = this.data;
+        if (index >= soundItems.length) return;
+
+        const currentItem = soundItems[index];
+        
+        // 显示加载提示
+        wx.showToast({
+            title: `正在加载${currentItem.name}...`,
+            icon: 'none',
+            duration: 500
+        });
+
+        // 创建新的音频上下文
+        const innerAudioContext = wx.createInnerAudioContext();
+        innerAudioContext.src = currentItem.soundPath;
+        innerAudioContext.loop = true; // 设置循环播放
+
+        // 播放成功回调
+        innerAudioContext.onPlay(() => {
+            console.log('开始播放');
+            this.setData({ 
+                isPlaying: true,
+                currentAudioContext: innerAudioContext 
+            });
+        });
+
+        // 错误处理
+        innerAudioContext.onError((res) => {
+            console.error('播放错误:', res);
+            wx.showToast({
+                title: '播放失败，请检查音频源',
+                icon: 'none'
+            });
+            this.setData({ isPlaying: false });
+        });
+
+        // 开始播放
+        innerAudioContext.play();
+    },
+
 
     // 初始化 Canvas
     async initCanvas() {
@@ -190,14 +322,14 @@ Page({
                 const size = Math.min(trackRes.width, trackRes.height);
                 const center = size / 2;
                 const radius = center * 0.85; // 与进度条半径保持一致
-                
+
                 // 计算初始按钮位置（PX单位）
                 const initialAngle = this.data.lastAngle;
                 const initialX = center + radius * Math.cos(initialAngle);
                 const initialY = center + radius * Math.sin(initialAngle);
 
-                this.setData({ 
-                    canvasSize: size, 
+                this.setData({
+                    canvasSize: size,
                     trackSize: size,
                     buttonPosition: {
                         left: initialX,
@@ -254,6 +386,63 @@ Page({
         ctx.lineWidth = size * 0.09; // 响应式线宽
         ctx.lineCap = 'round';
         ctx.stroke();
+    },
+
+    // 触摸开始事件
+    handleTouchStart(e: WechatMiniprogram.TouchEvent) {
+        this.setData({
+            startX: e.touches[0].clientX,
+            isDragging: true
+        });
+    },
+
+    switchPlayState() {
+        const { isPlaying, currentAudioContext, audioManager } = this.data;
+        
+        if (currentAudioContext) {
+            if (isPlaying) {
+                // 暂停播放
+                currentAudioContext.pause();
+                this.setData({ isPlaying: false });
+            } else {
+                // 继续播放
+                currentAudioContext.play();
+                this.setData({ isPlaying: true });
+            }
+        } else if (audioManager) {
+            // 处理backgroundAudioManager的情况
+            if (isPlaying) {
+                audioManager.pause();
+                this.setData({ isPlaying: false });
+            } else {
+                audioManager.play();
+                this.setData({ isPlaying: true });
+            }
+        } else {
+            wx.showToast({
+                title: '请选择一个音频',
+                icon: 'none'
+            });
+        }
+    },
+
+    /**
+ * 生命周期函数--监听页面加载
+ */
+    onLoad() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady() {
+        // 初始化音频管理器
+        const audioManager = wx.getBackgroundAudioManager();
+        this.setData({ audioManager });
+
+        // 初始化Canvas
+        this.initCanvas();
     },
 
     /**

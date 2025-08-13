@@ -5,6 +5,8 @@
     "pages/statistics/statistics",
     "pages/personal/personal",
     "pages/rank_list/rank_list",
+    "pages/settings/settings",
+    "pages/info/info",
     "pages/logs/logs"
   ],
   "window": {
@@ -15,6 +17,7 @@
   "usingComponents": {
     "van-popup": "@vant/weapp/popup/index"  
   },
+  "requiredBackgroundModes": ["audio"],
   "componentFramework": "glass-easel",
   "lazyCodeLoading": "requiredComponents",
   "tabBar": {

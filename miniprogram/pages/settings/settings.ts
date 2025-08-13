@@ -1,4 +1,4 @@
-// pages/personal/personal.ts
+// pages/settings/settings.ts
 Page({
 
   /**
@@ -7,11 +7,6 @@ Page({
   data: {
 
   },
-
-      // 点击导航栏跳转到此页面时
-      onTabItemTap() {
-        wx.vibrateShort({ type: 'heavy' }); 
-    },
 
   /**
    * 生命周期函数--监听页面加载
@@ -67,17 +62,5 @@ Page({
    */
   onShareAppMessage() {
 
-  },
-
-  goToSettings() {
-    wx.navigateTo({
-        url: '../settings/settings'
-    })
-  },
-
-  goToInfo() {
-    wx.navigateTo({
-        url: '../info/info'
-    })
-  },
+  }
 })

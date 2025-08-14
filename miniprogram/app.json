@@ -15,7 +15,9 @@
     "navigationBarBackgroundColor": "#ffffff"
   },
   "usingComponents": {
-    "van-popup": "@vant/weapp/popup/index"  
+    "van-popup": "@vant/weapp/popup/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index"
   },
   "requiredBackgroundModes": ["audio"],
   "componentFramework": "glass-easel",

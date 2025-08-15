@@ -1,1 +1,40 @@
 /* pages/info/info.wxss */
+.name {
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.version {
+    margin-top: 5px;
+    color: grey;
+}
+
+.info-box {
+    height: 55px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.onBtnPushed {
+    background-color: #ddd;
+}
+
+.tip-text {
+    color: grey;
+    font-size: 14px;
+}
+
+.manual-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.manual-box text {
+    margin-bottom: 20px;
+    font-size: 15px;
+}

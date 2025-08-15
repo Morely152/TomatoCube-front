@@ -1,2 +1,46 @@
 <!--pages/info/info.wxml-->
-<text>pages/info/info.wxml</text>
+<view class="light-main">
+    <view class="light-main" style="margin-top: 15%; height: auto;">
+        <view style="width: 35%; aspect-ratio: 1/1;" bind:tap="vibrationRespond">
+            <image src="../../resources/light-icons/main_256px.ico" style="width: 100%; height: 100%;"></image>
+        </view>
+        <text class="name" bind:tap="vibrationRespond">番茄魔方</text>
+        <text class="version" bind:tap="vibrationRespond">Version.beta</text>
+    </view>
+
+    <button class="info-box" hover-class="onBtnPushed" style="margin-top: 8%;" bind:tap="showManual">
+        <text>用户手册</text>
+        <image style="width: 16px; height: 18px;" src="../../resources/light-icons/go-right.png"></image>
+    </button>
+
+    <button class="info-box" hover-class="onBtnPushed" bind:tap="copyGropId">
+        <text>QQ交流群</text>
+        <text class="tip-text">866190222</text>
+    </button>
+
+    <button class="info-box">
+        <text>备案信息</text>
+        <text class="tip-text">正在备案中…</text>
+    </button>
+    <button class="info-box" hover-class="onBtnPushed" bind:tap="showLog">
+        <text>开源项目使用说明</text>
+        <image style="width: 16px; height: 18px;" src="../../resources/light-icons/go-right.png"></image>
+    </button>
+
+    <!-- 用户协议与隐私条款 -->
+    <view style="position: fixed; bottom: 50px; z-index: 100;">
+        <text style="color: #2A82E4; text-decoration: underline; font-size: 12px;">用户协议与隐私条款</text>
+    </view>
+
+    <!-- 用户手册弹层 -->
+    <van-popup custom-class="manual-box" show="{{ showManual }}" bind:close="closeManual" round>
+        <text>扫码查看用户手册</text>
+        <image src="../../resources/light-icons/manual.png" style="height: 120px; width: 120px;"></image>
+    </van-popup>
+
+    <!-- 开源组件弹层 -->
+        <van-popup custom-class="manual-box" show="{{ showLog }}" bind:close="closeLog" round>
+        <text>扫码查看相关文档</text>
+        <image src="../../resources/light-icons/components_log.png" style="height: 120px; width: 120px;"></image>
+    </van-popup>
+</view>

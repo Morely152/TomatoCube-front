@@ -39,7 +39,7 @@
     </van-popup>
 
     <!-- 开源组件弹层 -->
-        <van-popup custom-class="manual-box" show="{{ showLog }}" bind:close="closeLog" round>
+    <van-popup custom-class="manual-box" show="{{ showLog }}" bind:close="closeLog" round>
         <text>扫码查看相关文档</text>
         <image src="../../resources/light-icons/components_log.png" style="height: 120px; width: 120px;"></image>
     </van-popup>

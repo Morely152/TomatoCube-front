@@ -54,3 +54,107 @@
 .onBtnPushed {
     background-color: #ddd;
 }
+
+.code-box {
+    width: 80%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.code-box input {
+    margin-top: 25%;
+    width: 80%;
+    height: 20%;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.bottom-btn {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    height: 20%;
+}
+
+.bottom-btn button {
+    width: 50%;
+}
+
+.cancel {
+    background-color: #cccccc;
+    border-radius: 0;
+}
+
+.confirm {
+    background-color: #FF6347;
+    color: white;
+    border-radius: 0;
+}
+
+.VIP-box {
+    height: 60%;
+    width: 100%;
+}
+
+.vip-banner {
+    width: 100%;
+    height: 30%;
+    background-color: #303030;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.vip-slogan {
+    font-size: 150%;
+    background: linear-gradient(90deg, #F6D365 0%, #FDA085 100%);
+    line-height: 28.96px;
+    -webkit-background-clip: text;
+    background-clip:text;
+    color: transparent;
+}
+
+.recharge-box {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.vip-recharge {
+    width: 80%;
+    height: 30%;
+    border: solid 3px #ff6347;
+    border-radius: 8px;
+    background: #FF634726;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.time {
+    margin-left: 5%;
+    font-size: large;
+    color: #ff6347;
+}
+
+.price {
+    color: #333333;
+    margin-right: 5%;
+}
+
+.cancel-tip {
+    width: 80%;
+    margin-top: 10%;
+}
+
+.strong {
+    color: red;
+    font-weight: bold;
+}

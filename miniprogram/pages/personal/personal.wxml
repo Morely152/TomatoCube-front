@@ -27,7 +27,7 @@
             </button>
 
             <!-- 激活码兑换 -->
-            <button class="list-view" hover-class="onBtnPushed">
+            <button class="list-view" hover-class="onBtnPushed" bind:tap="showCode">
                 <view class="icon-text-box">
                     <image style="width: 18px; height: 18px;" src="../../resources/light-icons/mine-view-2.png"></image>
                     <text>激活码兑换</text>
@@ -36,7 +36,7 @@
             </button>
 
             <!-- 开通VIP -->
-            <button class="list-view" hover-class="onBtnPushed">
+            <button class="list-view" hover-class="onBtnPushed" bind:tap="showVIP">
                 <view class="icon-text-box">
                     <image style="width: 18px; height: 18px;" src="../../resources/light-icons/mine-view-3.png"></image>
                     <text>开通VIP</text>
@@ -45,7 +45,7 @@
             </button>
 
             <!-- 意见反馈 -->
-            <button class="list-view" hover-class="onBtnPushed" style="margin-top: 3%;  border-top: solid 1px #d1d9e6;">
+            <button class="list-view" hover-class="onBtnPushed" style="margin-top: 3%;  border-top: solid 1px #d1d9e6;" bind:tap="feedBack">
                 <view class="icon-text-box">
                     <image style="width: 18px; height: 18px;" src="../../resources/light-icons/mine-view-4.png"></image>
                     <text>意见反馈</text>
@@ -63,7 +63,7 @@
             </button>
 
             <!-- 注销账号 -->
-            <button class="list-view" hover-class="onBtnPushed" style="margin-top: 3%;  border-top: solid 1px #d1d9e6;">
+            <button class="list-view" hover-class="onBtnPushed" style="margin-top: 3%;  border-top: solid 1px #d1d9e6;" bind:tap="showCancel">
                 <view class="icon-text-box">
                     <image style="width: 18px; height: 18px;" src="../../resources/light-icons/mine-view-6.png"></image>
                     <text>注销账号</text>
@@ -72,7 +72,7 @@
             </button>
 
             <!-- 退出登录 -->
-            <button class="list-view" hover-class="onBtnPushed">
+            <button class="list-view" hover-class="onBtnPushed" bind:tap="logOut">
                 <view class="icon-text-box">
                     <image style="width: 18px; height: 18px;" src="../../resources/light-icons/mine-view-7.png"></image>
                     <text>退出登录</text>
@@ -88,5 +88,42 @@
         <text style="color: #2A82E4; text-decoration: underline; font-size: 12px;">用户协议与隐私条款</text>
     </view>
 
-    
+    <!-- 激活码弹层 -->
+    <van-popup custom-class="code-box" show="{{ showCode }}" bind:close="closeCode" round>
+        <input class="light-in" placeholder="请输入激活码" value="{{inputCode}}" bindinput="onInputCode" />
+        <view class="bottom-btn">
+            <button class="cancel" bind:tap="closeCode">取消</button>
+            <button class="confirm" bind:tap="verifyCode">激活</button>
+        </view>
+    </van-popup>
+
+    <!-- VIP弹层 -->
+    <van-popup position="bottom" custom-class="VIP-box" show="{{ showVIP }}" bind:close="closeVIP" round>
+        <view class="vip-banner">
+            <text class="vip-slogan">开发不易，感谢您的支持</text>
+            <text class="vip-slogan">观看广告解锁高级权益</text>
+        </view>
+
+        <view class="recharge-box">
+            <view class="vip-recharge" bind:tap="showAd16">
+                <text class="time">1天高级权益</text>
+                <text class="price">16s广告</text>
+            </view>
+            <view class="vip-recharge" bind:tap="showAd30">
+                <text class="time">5天高级权益</text>
+                <text class="price">30s广告</text>
+            </view>
+        </view>
+    </van-popup>
+
+    <van-popup custom-class="code-box" show="{{ showCancel }}" bind:close="closeCancel" round>
+        <view class="cancel-tip">
+            <text>“注销账号”操作将会使您的账号及用户数据被<text class="strong">彻底删除，并且无法恢复</text>。若要保留数据，选择“退出登录”即可。确定要注销账号吗？</text>
+        </view>
+        <view class="bottom-btn">
+            <button class="cancel" bind:tap="closeCancel">取消</button>
+            <button class="confirm" bind:tap="confirmCode" style="background-color: red;">确定</button>
+        </view>
+    </van-popup>
+
 </view>

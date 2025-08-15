@@ -11,10 +11,10 @@
                 </view>
 
                 <!-- 分享按钮 -->
-                <view hover-class="onBtnPushed" class="top-btn" style="flex: 1; border: solid white 1px; margin: 4px 6px; border-radius: 8px; height: 25px;" bindtap="shareRank">
+                <button hover-class="onBtnPushed" class="top-btn" style="flex: 1; border: solid white 1px; margin: 4px 6px; border-radius: 8px; height: 25px;" open-type="share">
                     <image src="../../resources/light-icons/share.png" style="width: 16px; height: 16px; margin-right: 5px;"></image>
                     <text style="color: white;">分享</text>
-                </view>
+                </button>
 
                 <!-- 刷新按钮 -->
                 <view hover-class="onBtnPushed" class="top-btn" style="flex: 1; border: solid white 1px; margin: 4px 6px; border-radius: 8px; height: 25px;" bindtap="refreshData" bind:tap="refreshData">

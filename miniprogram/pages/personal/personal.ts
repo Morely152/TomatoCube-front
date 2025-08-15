@@ -67,5 +67,17 @@ Page({
    */
   onShareAppMessage() {
 
-  }
+  },
+
+  goToSettings() {
+    wx.navigateTo({
+        url: '../settings/settings'
+    })
+  },
+
+  goToInfo() {
+    wx.navigateTo({
+        url: '../info/info'
+    })
+  },
 })

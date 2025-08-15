@@ -101,3 +101,54 @@
 .onBtnPushed {
     background-color: #919191;
 }
+
+/* 白噪音弹窗样式 */
+.sound-box {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ecf0f3;
+}
+
+.sound-bkg {
+    width: calc(100% - 60px);
+    aspect-ratio: 1/1;
+    margin: 10% 0;
+}
+
+.sound-ctrl {
+    width: calc(100% - 60px);
+    height: 15%;
+}
+
+.sound-switch {
+    /* border: solid 1px red; */
+    aspect-ratio: 1/1;
+    background-color: #ecf0f3;
+    border-radius: 15%;
+}
+
+.sound-switch .cpx-icon {
+    display: block;
+}
+
+.sound-switch .ckd-icon {
+    display: none;
+}
+
+.sound-switch-checked {
+    /* border: solid 1px red; */
+    aspect-ratio: 1/1;
+    background-color: #cccccc;
+    border-radius: 15%;
+    color: #ff6347;
+}
+
+.sound-switch-checked .cpx-icon {
+    display: none;
+}
+
+.sound-switch-checked .ckd-icon {
+    display: block;
+}

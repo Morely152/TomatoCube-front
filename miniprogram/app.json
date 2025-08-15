@@ -5,6 +5,8 @@
     "pages/statistics/statistics",
     "pages/personal/personal",
     "pages/rank_list/rank_list",
+    "pages/settings/settings",
+    "pages/info/info",
     "pages/logs/logs"
   ],
   "window": {
@@ -13,8 +15,11 @@
     "navigationBarBackgroundColor": "#ffffff"
   },
   "usingComponents": {
-    "van-popup": "@vant/weapp/popup/index"  
+    "van-popup": "@vant/weapp/popup/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index"
   },
+  "requiredBackgroundModes": ["audio"],
   "componentFramework": "glass-easel",
   "lazyCodeLoading": "requiredComponents",
   "tabBar": {

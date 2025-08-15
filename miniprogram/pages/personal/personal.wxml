@@ -18,7 +18,7 @@
     <view class="center" style="width: 100%; height: 100%; background-color: #ecf0f3; z-index: 100; border-radius: 8px; box-shadow: 3px 0px 8px 2px #FFFFFF;">
         <view class="list-box">
             <!-- 软件设置 -->
-            <button class="list-view" hover-class="onBtnPushed" style="margin-top: 5%;">
+            <button class="list-view" hover-class="onBtnPushed" style="margin-top: 5%; border-top: solid 1px #d1d9e6;" bind:tap="goToSettings">
                 <view class="icon-text-box">
                     <image style="width: 18px; height: 18px;" src="../../resources/light-icons/mine-view-1.png"></image>
                     <text>软件设置</text>
@@ -45,7 +45,7 @@
             </button>
 
             <!-- 意见反馈 -->
-            <button class="list-view" hover-class="onBtnPushed" style="margin-top: 3%;">
+            <button class="list-view" hover-class="onBtnPushed" style="margin-top: 3%;  border-top: solid 1px #d1d9e6;">
                 <view class="icon-text-box">
                     <image style="width: 18px; height: 18px;" src="../../resources/light-icons/mine-view-4.png"></image>
                     <text>意见反馈</text>
@@ -54,7 +54,7 @@
             </button>
 
             <!-- 关于我们 -->
-            <button class="list-view" hover-class="onBtnPushed">
+            <button class="list-view" hover-class="onBtnPushed" bind:tap="goToInfo">
                 <view class="icon-text-box">
                     <image style="width: 18px; height: 18px;" src="../../resources/light-icons/mine-view-5.png"></image>
                     <text>关于我们</text>
@@ -63,7 +63,7 @@
             </button>
 
             <!-- 注销账号 -->
-            <button class="list-view" hover-class="onBtnPushed" style="margin-top: 3%;">
+            <button class="list-view" hover-class="onBtnPushed" style="margin-top: 3%;  border-top: solid 1px #d1d9e6;">
                 <view class="icon-text-box">
                     <image style="width: 18px; height: 18px;" src="../../resources/light-icons/mine-view-6.png"></image>
                     <text>注销账号</text>
@@ -87,4 +87,6 @@
     <view style="position: fixed; bottom: 20px; z-index: 100;">
         <text style="color: #2A82E4; text-decoration: underline; font-size: 12px;">用户协议与隐私条款</text>
     </view>
+
+    
 </view>

@@ -1,55 +1,75 @@
 <!--pages/staticstics/statistics.wxml-->
 <view class="light-main">
-    <!-- ----------专注报表---------- -->
-    <view class="title" style="width: 100%;">
-        <view class="block"></view>
-        <view class="little-title">专注报表</view>
+  <!-- ----------专注报表---------- -->
+  <view class="title" style="width: 100%;">
+    <view class="block"></view>
+    <view class="little-title">专注报表</view>
+  </view>
+
+  <view class="chart" style="height: 113px;">
+    <grid-view class="focus-table" cross-axis-count="4" cross-axis-gap="1" main-axis-gap="1">
+      <!-- 表头 -->
+      <view class="thead"> </view>
+      <view class="thead">专注次数</view>
+      <view class="thead">专注时长</view>
+      <view class="thead">超越用户</view>
+
+      <!-- 第一行 -->
+      <view class="thead">今日</view>
+      <view>{{today_amounts}}次</view>
+      <view>{{today_duration_hour}}小时{{today_duration_minute}}分钟</view>
+      <view>{{today_surpass}}%</view>
+
+      <!-- 第二行 -->
+      <view class="thead">本周</view>
+      <view>{{week_amounts}}次</view>
+      <view>{{week_duration_hour}}小时{{today_duration_minute}}分钟</view>
+      <view>{{week_surpass}}%</view>
+
+      <!-- 第三行 -->
+      <view class="thead">总计</view>
+      <view>{{all_amounts}}次</view>
+      <view>{{all_duration_hour}}小时{{today_duration_minute}}分钟</view>
+      <view>{{all_surpass}}%</view>
+    </grid-view>
+  </view>
+
+  <!------------ 专注热力图 ------------->
+  <view class="title" style="width: 100%;">
+    <view class="block"></view>
+    <view class="little-title">专注热力图</view>
+  </view>
+
+  <view class="chart" style="height: 190px;">
+    <!-- 顶部小时刻度 -->
+    <view class="hour-labels">
+      <text wx:for="{{hours}}" wx:key="*this" class="hour {{item==5||item==11||item==17||item==23?'show':''}}">
+        {{item==5||item==11||item==17||item==23?(item + '时'):''}}
+      </text>
     </view>
 
-    <view class="chart" style="height: 113px;">
-        <grid-view class="focus-table" cross-axis-count="4" cross-axis-gap="1" main-axis-gap="1">
-            <!-- 表头 -->
-            <view class="thead"> </view>
-            <view class="thead">专注次数</view>
-            <view class="thead">专注时长</view>
-            <view class="thead">超越用户</view>
+    <!-- 主体：左侧日期 + 右侧 24 列格子 -->
+    <view class="body">
+      <!-- 左侧日期列 -->
+      <view class="date-col">
+        <text wx:for="{{dates}}" wx:key="*this" class="date-text">{{item}}</text>
+      </view>
 
-            <!-- 第一行 -->
-            <view class="thead">今日</view>
-            <view>{{today_amounts}}次</view>
-            <view>{{today_duration_hour}}小时{{today_duration_minute}}分钟</view>
-            <view>{{today_surpass}}%</view>
-
-            <!-- 第二行 -->
-            <view class="thead">本周</view>
-            <view>{{week_amounts}}次</view>
-            <view>{{week_duration_hour}}小时{{today_duration_minute}}分钟</view>
-            <view>{{week_surpass}}%</view>
-
-            <!-- 第三行 -->
-            <view class="thead">总计</view>
-            <view>{{all_amounts}}次</view>
-            <view>{{all_duration_hour}}小时{{today_duration_minute}}分钟</view>
-            <view>{{all_surpass}}%</view>
-        </grid-view>
+      <!-- 右侧 24 列格子 -->
+      <view class="grid">
+        <block wx:for="{{matrix}}" wx:key="index">
+          <view class="cell" style="background:{{item.color}}" bindtap="onCellTap" data-date="{{item.date}}" data-hour="{{item.hour}}" data-value="{{item.value}}">
+          </view>
+        </block>
+      </view>
     </view>
+  </view>
+  <!-- ----------专注折线图------------ -->
+  <view class="title" style="width: 100%;">
+    <view class="block"></view>
+    <view class="little-title">专注折线图</view>
+  </view>
 
-    <!------------ 专注热力图 ------------->
-    <view class="title" style="width: 100%;">
-        <view class="block"></view>
-        <view class="little-title">专注热力图</view>
-    </view>
-
-    <view class="chart" style="height: 190px;">
-
-    </view>
-    <!-- ----------专注折线图------------ -->
-    <view class="title" style="width: 100%;">
-        <view class="block"></view>
-        <view class="little-title">专注折线图</view>
-    </view>
-
-    <view class="chart" style="height: 235px;">
-
-    </view>
+  <view class="chart" style="height: 235px;">
+  </view>
 </view>

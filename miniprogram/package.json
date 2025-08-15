@@ -11,6 +11,8 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
-    "@vant/weapp": "^1.11.7"
+    "@vant/weapp": "^1.11.7",
+    "vant": "^4.9.21",
+    "weapp": "^0.0.0"
   }
 }

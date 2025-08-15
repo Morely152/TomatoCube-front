@@ -67,3 +67,61 @@ page {
 .focus-table {
     font-weight: normal;
 }
+
+/* ----------专注热力图------------ */
+/* 小时刻度：只在 5/11/17/23 显示数字 */
+.hour-labels {
+  display: grid;
+  grid-template-columns: repeat(24, 139rpx); 
+  gap: 4rpx; /* 与热力图 grid 的 gap 保持一致，视觉更对齐 */
+  justify-content: start; 
+  margin-left: 188rpx; /* 空出左侧日期列的宽度，让刻度从网格开始 */
+}
+
+.hour {
+  width: 50rpx; 
+  font-size: 20rpx;
+  text-align: center;
+  margin-bottom: 1.5rpx;
+  color: #cccccc;
+}
+.hour.show {
+  color: #cccccc;
+}
+
+/* 主体：左侧日期 + 右侧格子（CSS Grid） */
+.body {
+  display: grid;
+  grid-template-columns: 100rpx 1fr; /* 左侧日期 60rpx，右侧自适应 */
+  gap: 0 2rpx;
+  align-items: start; 
+}
+
+/* 左侧日期竖排 */
+.date-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.date-text {
+  font-size: 20rpx;
+  color: #cccccc;
+  text-align: right;
+  line-height: 36rpx;   /* 与格子高度对齐 */
+  padding-right: 10rpx;
+}
+
+/* 右侧 24 列格子 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(24, 20rpx);
+  grid-template-rows: repeat(7, 32rpx);
+  gap: 4rpx;
+}
+
+.cell {
+  width: 22rpx;
+  height: 30rpx;
+  border-radius: 2px;
+}

@@ -69,7 +69,13 @@
     <view class="block"></view>
     <view class="little-title">专注折线图</view>
   </view>
-
+  <view class="tabs-wrapper">
+    <van-tabs type="card" tab-class="my-tab" active-tab-class="my-active-tab" nav-class="my-nav">
+      <van-tab title="今日"></van-tab>
+      <van-tab title="本月"></van-tab>
+      <van-tab title="总计"></van-tab>
+    </van-tabs>
+  </view>
   <view class="chart" style="height: 235px;">
   </view>
 </view>

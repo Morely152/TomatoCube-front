@@ -1,6 +1,14 @@
 /* pages/staticstics/statistics.wxss */
 page {
     background-color: #F5F5F5;
+    /* 1. 标签栏高度（默认 44px） */
+  --tabs-nav-height: 80rpx;          /* 改成 80rpx */
+
+  /* 2. 标签栏字体大小（默认 28rpx） */
+  --tabs-nav-font-size: 33rpx;
+
+  /* 3. 内容区高度（仅 card 类型生效） */
+  --tabs-card-height: 41rpx;        /* 想整体变矮就改这里 */
 }
 
 /* 标题前的橙色小方块样式 */
@@ -124,4 +132,36 @@ page {
   width: 22rpx;
   height: 30rpx;
   border-radius: 2px;
+}
+
+/* --------专注折线图--------- */
+.tabs-wrapper {
+  margin-top: -7%;
+  margin-left: 59%;
+  margin-bottom: 1%;
+}
+/* 未选中的标签样式 */
+/* 未选中卡片背景色 */
+.van-tabs--card .van-tab .van-tab__card {
+  background-color: #F5F5F5 !important;
+  color: #FF6347 !important;
+}
+
+/* 选中卡片背景色 */
+.van-tabs--card .van-tab--active .van-tab__card {
+  background-color: #FF6347 !important;
+  color: #fff !important;
+}
+
+/* 选中的标签样式 */
+.my-active-tab {
+  background-color: #FF6347 !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+/* 整个导航栏样式（可选） */
+.my-nav {
+  border: none !important;
+  background: transparent !important;
 }
